@@ -3,11 +3,11 @@ public class Triangle {
     double a;
     double b;
     double c;
-    double getArea(){
-        double p=(this.a+this.b+this.c)/2;
-        return Math.sqrt(p*(p-this.a)*(p-this.b)*(p-this.c));
+    static double getArea(Triangle t){
+        double p=(t.a+t.b+t.c)/2;
+        return Math.sqrt(p*(p-t.a)*(p-t.b)*(p-t.c));
     }
-    Triangle(){
+    public Triangle(){
         a=1;
         b=1;
         c=1;
@@ -27,15 +27,15 @@ public class Triangle {
         this.b=a;
         this.c=a;
     }
-    double getPerimeter(){
-        return this.a+this.b+this.c;
+    public static double getPerimeter(Triangle a){
+        return a.a+a.b+a.c;
     }
     void modify(double a, double b, double c){
         this.a=a;
         this.b=b;
         this.c=c;
     }
-    Triangle scale(double d){
+    public Triangle scale(double d){
         Triangle t=new Triangle();
         t.a=this.a*d;
         t.b=this.b*d;
@@ -56,7 +56,7 @@ public class Triangle {
     Triangle getAHalf(){
         Triangle d=new Triangle();
         d.a=this.a;
-        d.b=this.getArea()/this.a;
+        d.b=Triangle.getArea(this)/this.a;
         d.c=Math.sqrt(d.a*d.a+d.b*d.b);
         return d;
     }
@@ -81,5 +81,10 @@ public class Triangle {
         else
             return false;
     }
+    public boolean checkTriangle(){
+        if (a+b>c && a+c>b && b+c>a)
+            return true;
+        else
+            return false;
+    }
 }
-
